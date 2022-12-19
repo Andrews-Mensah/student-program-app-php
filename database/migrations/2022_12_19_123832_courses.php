@@ -18,6 +18,8 @@ return new class extends Migration
             $table->id();
             $table-> string('name');
             $table->string('description')->nullable();
+            $table->unsignedBigInteger('program_id');
+            $table->foreign('program_id')->references('id')->on('programs')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

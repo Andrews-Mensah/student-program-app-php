@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Courses;
 use Illuminate\Http\Request;
+use App\Models\Programs;
 
-class CoursesController extends Controller
+class ProgramController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class CoursesController extends Controller
     public function index()
     {
         //
-        return Courses::all();
+        return Programs::all();
     }
 
     /**
@@ -27,13 +27,11 @@ class CoursesController extends Controller
     public function store(Request $request)
     {
         //
-
         $request->validate([
             'name'=> 'required',
             'description'=> 'required',
-            'program_id'=> 'required'
         ]);
-        return Courses::create($request->all());
+        return Programs::create($request->all());
     }
 
     /**
@@ -45,13 +43,13 @@ class CoursesController extends Controller
     public function show($id)
     {
         //
-        $course = Courses::find($id);
+        $program = Programs::find($id);
 
-        if(!$course){
-            return 'Course not found';
+        if(!$program){
+            return 'Program not found';
         };
 
-        return $course;
+        return $program;
     }
 
     /**
@@ -63,13 +61,14 @@ class CoursesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $course = Courses::find($id);
-        if(!$course){
+        //
+        $program = Programs::find($id);
+        if(!$program){
             return 'Course not found';
         };
 
-        $course->update($request->all());
-        return $course;
+        $program->update($request->all());
+        return $program;
     }
 
     /**
@@ -81,14 +80,12 @@ class CoursesController extends Controller
     public function destroy($id)
     {
         //
-
-        $course = Courses::find($id);
-        if(!$course){
-            return 'Course not found';
+        $program = Programs::find($id);
+        if(!$program){
+            return 'Program not found';
         }
-        Courses::destroy($id);
-        return 'Course deleted successfully';
-
+        Programs::destroy($id);
+        return 'Program deleted successfully';
     }
 
 
@@ -101,8 +98,8 @@ class CoursesController extends Controller
     public function search($name)
     {
 
-       $course = Courses::where('name', 'like', '%'.$name.'%')->get();
-       return $course;
+       $program = Programs::where('name', 'like', '%'.$name.'%')->get();
+       return $program;
 
     }
 }

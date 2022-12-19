@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CoursesController;
+use App\Http\Controllers\ProgramController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,11 @@ Route::get('/courses/get-course/{id}', [CoursesController::class, 'show']);
 Route::put('/courses/update-course/{id}', [CoursesController::class, 'update']);
 Route::delete('/courses/delete-course/{id}', [CoursesController::class, 'destroy']);
 Route::get('/courses/search-course/{name}', [CoursesController::class, 'search']);
+
+
+//Programs Routes
+Route::get('/programs/get-programs', [ProgramController::class, 'index']);
+Route::post('/programs/add-program', [ProgramController::class, 'store']);
 
 // Route::resource('courses', CoursesController::class);
 

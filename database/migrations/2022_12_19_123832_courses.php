@@ -15,10 +15,10 @@ return new class extends Migration
     {
         //
         Schema::create('courses', function (Blueprint $table){
-            $table->id();
+            $table->uuid('id');
             $table-> string('name');
             $table->string('description')->nullable();
-            $table->unsignedBigInteger('program_id');
+            $table->uuid('program_id');
             $table->foreign('program_id')->references('id')->on('programs')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });

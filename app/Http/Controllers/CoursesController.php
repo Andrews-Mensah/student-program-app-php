@@ -62,7 +62,6 @@ class CoursesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
         $course = Courses::find($id);
         if(!$course){
             return 'Course not found';
@@ -86,7 +85,6 @@ class CoursesController extends Controller
         if(!$course){
             return 'Course not found';
         }
-        // $course->destroy();
         Courses::destroy($id);
         return 'Course deleted successfully';
 
@@ -101,7 +99,6 @@ class CoursesController extends Controller
      */
     public function search($name)
     {
-        //
 
        $course = Courses::where('name', 'like', '%'.$name.'%')->get();
        return $course;

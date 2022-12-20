@@ -63,8 +63,18 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //update function
+        $students=Student::find($id);
+    
+        $students->first_name=$request->first_name;
+        $students->last_name=$request->last_name;
+        $students->gender=$request->gender;
+        $students->email=$request->email;
+        $students->program_id=$request->program_id;
+        $students->update($request->all());
+        return $students;
     }
+    
 
     /**
      * Remove the specified resource from storage.
@@ -75,5 +85,11 @@ class StudentController extends Controller
     public function destroy($id)
     {
         //
+        $student = Student::find($id);
+        if (!$student){
+            return 'Student not found';
+        }
+        Student::destroy($id);
+        return 'Student deleted successfully';
     }
 }

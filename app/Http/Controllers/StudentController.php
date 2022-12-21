@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Student;
+use App\Models\Programs;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -92,4 +93,17 @@ class StudentController extends Controller
         Student::destroy($id);
         return 'Student deleted successfully';
     }
+
+    public function program($id)
+    {
+        //
+        $program=Programs::find($id);
+        if (!$program) {
+            return 'Program not found';
+        } else {
+            return Student::where('program_id', $id)->get();
+        };
+        
+    }
+
 }

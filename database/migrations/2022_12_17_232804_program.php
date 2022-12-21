@@ -15,7 +15,7 @@ return new class extends Migration
     {
         
         Schema::create('programs', function (Blueprint $table){
-            $table->id();
+            $table->uuid('id')->unique();
             $table-> string('name');
             $table->string('description')->nullable();
             $table->timestamps();
